@@ -1,6 +1,6 @@
 {
   "name": "@mdz/mirador-image-tools",
-  "version": "0.10.0",
+  "version": "0.10.0-mdz.1",
   "description": "mirador-image-tools React component",
   "main": "lib/index.js",
   "module": "es/index.js",
