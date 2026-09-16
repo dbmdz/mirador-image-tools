@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { MiradorMenuButton } from 'mirador/dist/es/src/components/MiradorMenuButton';
-import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { MiradorMenuButton } from 'mirador';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import { alpha } from '@mui/material/styles';
 
 export default class ImageFlip extends Component {
   render() {
-    const {
-      flipped, label, backgroundColor, foregroundColor, ...otherProps
-    } = this.props;
+    const { flipped, label, backgroundColor, foregroundColor, ...otherProps } = this.props;
 
     return (
-      <MiradorMenuButton
-        aria-label={label}
-        style={{ backgroundColor: flipped && fade(foregroundColor, 0.25) }}
-        {...otherProps}
-      >
+      <MiradorMenuButton aria-label={label} style={{ backgroundColor: flipped && alpha(foregroundColor, 0.25) }} {...otherProps}>
         <SwapHorizIcon style={{ color: flipped && backgroundColor }} />
       </MiradorMenuButton>
     );
@@ -24,9 +18,8 @@ export default class ImageFlip extends Component {
 
 ImageFlip.propTypes = {
   backgroundColor: PropTypes.string,
-  containerId: PropTypes.string.isRequired,
-  foregroundColor: PropTypes.string,
   flipped: PropTypes.bool.isRequired,
+  foregroundColor: PropTypes.string,
   label: PropTypes.string.isRequired,
 };
 

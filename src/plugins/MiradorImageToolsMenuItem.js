@@ -1,13 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TuneSharpIcon from '@material-ui/icons/TuneSharp';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import TuneSharpIcon from '@mui/icons-material/TuneSharp';
+import { useTranslation } from 'mirador';
 
-const MiradorImageToolsMenuItem = ({
-  enabled, handleClose, t, updateWindow, windowId,
-}) => {
+const MiradorImageToolsMenuItem = ({ enabled = true, handleClose, updateWindow, windowId }) => {
+  const { t } = useTranslation();
+
   const handleClickOpen = () => {
     handleClose();
     updateWindow(windowId, { imageToolsEnabled: !enabled });
@@ -18,9 +18,7 @@ const MiradorImageToolsMenuItem = ({
       <ListItemIcon>
         <TuneSharpIcon />
       </ListItemIcon>
-      <ListItemText primaryTypographyProps={{ variant: 'body1' }}>
-        { enabled ? t('hide') : t('show') }
-      </ListItemText>
+      <ListItemText primaryTypographyProps={{ variant: 'body1' }}>{enabled ? t('hide') : t('show')}</ListItemText>
     </MenuItem>
   );
 };
@@ -28,13 +26,8 @@ const MiradorImageToolsMenuItem = ({
 MiradorImageToolsMenuItem.propTypes = {
   enabled: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
   updateWindow: PropTypes.func.isRequired,
   windowId: PropTypes.string.isRequired,
-};
-
-MiradorImageToolsMenuItem.defaultProps = {
-  enabled: true,
 };
 
 export default MiradorImageToolsMenuItem;
